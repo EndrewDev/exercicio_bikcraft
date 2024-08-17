@@ -1,0 +1,36 @@
+{% extends "base/detalhe_bike.html" %}
+{% load static %}
+{% block conteudo %}
+<h1> Sobre a loja </h1>
+
+<h2> Nome: {{loja.nome}} </h2>
+
+<h3> Lista de produtos da Loja </h3>
+<div class='container-produtos'>
+    {% for produto in loja.produtos.all %}
+    
+        <div class='produto-item'>
+    
+            <h2>{{produto.modelo}}</h2>
+           
+            <img class='foto' src='{{produto.foto.url}}'/>
+            
+            <p>{{produto.descricao}}</p>
+            <h3>R$ {{produto.preco}}</h3>
+            
+        </div>
+        {% endfor %}
+</div>
+<h3> Lista de vendedores da Loja </h3>
+
+<div class='container-produtos'>
+    {% for vendedor in loja.vendedor_set.all %}
+    
+        <div class='produto-item'>
+            <h2>Vendedor: {{vendedor.nome}}</h2>
+            <p>CPF: {{vendedor.cpf}}</h2>
+            
+        </div>
+        {% endfor %}
+</div>
+{% endblock conteudo %}

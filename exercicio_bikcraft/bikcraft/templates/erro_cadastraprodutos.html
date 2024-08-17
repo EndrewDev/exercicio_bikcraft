@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protudo Bicicletas Feita a Mão</title>
+    <link rel="stylesheet" href="{% static "base/css/erro_cadastraprodutos.css" %}">
+</head>
+<body>
+    <div id='erro'>
+        <h2>Falta alguns informçao ou tente outro.</h2>
+    </div>
+
+    <div class='botao'>
+        <a href='{% url "pagina-cadastraprodutos" %}'><button>Volta para produtos</button></a>
+        <a href='{% url "pagina-inicial" %}'><button>Sair</button></a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Protudo Bicicletas Feita a Mão. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

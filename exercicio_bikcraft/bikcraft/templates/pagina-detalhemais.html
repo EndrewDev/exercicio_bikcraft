@@ -1,0 +1,49 @@
+{% extends "base/detalhe_bike.html" %}
+{% block conteudo %}
+<main>
+    <section id="home">
+        <h2><center>Bem-vindo à Detalhe rodutos Bicicletas Feita a Mão</center></h2>
+        <p><center>Nossas bicicletas são feitas com a maior qualidade e cuidado.</center></p>
+    </section>
+    <h2><center>Detalhe</center></h2>
+    <br>
+    <div class="button-cadastra">
+        
+    </div>
+    <br>
+    <div class='col-12'>
+        <input type='text' class='form-control' id='search' placeholder='Pesquisa Produtos'>
+    </div>
+    <br>
+    <section id="products">
+        {% for detalhe in detalhes.lojas_set.all %}
+
+            <h1>{{lojas.nome}}</h1>
+
+            <div class='product-card'>
+                <h2>{{produto.modelo}}</h2>
+                <img class='foto' src='{{produto.foto.url}}'/>
+                <p>{{produto.descricao}}</p>
+                <h3> R$ {{produto.preco}}</h3>
+                <div class="button-container">
+                    <a href='{% url "deleta-produtos" produto.id %}'><button>Deleta</button></a>
+                    <a id='atualizado' href='{% url "pagina-atualizado" produto.id %}'><button id='atualiza'>Atualizar</button></a>
+                    {% for detalhe in produto.detalhe_set.all %}
+                        <a href='{% url "pagina-detalhe" detalhe.id %}'><button>Mais informação</button></a>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class='lista_lojas'>
+                    {% for loja in produto.lojas_set.all %}
+                        {% if loja %}
+                            <h3>Lojas disponível: {{loja}}</h3>
+                        {% else %}
+                            <h3>Infelizmente, não tem nenhum loja com esse modelo</h3>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+</main>
+{% endblock conteudo %}

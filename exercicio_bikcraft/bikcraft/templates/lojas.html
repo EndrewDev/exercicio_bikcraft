@@ -1,0 +1,35 @@
+{% extends "base/lojas.html" %}
+{% load static %}
+{% block conteudo %}
+<main>
+    <section id="home">
+        <h2><center>Bem-vindo à Lojas Bicicletas Feita a Mão</center></h2>
+    </section>
+    <h2><center>Listas de Lojas</center></h2>
+    <br>
+    <div class="button">
+        <a href='{% url "cadastra-loja" %}'><button>Cadastra Lojas</button></a>
+    </div>
+    <br>
+    <form class='col-12' method='GET' action='{% url "pagina-loja" %}'>
+        <input type='text' name='search' class='form-control' id='search' placeholder='Pesquisa lojas'>
+    </form>
+    <br>
+    <section id="products">
+        {% for loja in lojas %}
+            <div class='product-card'>
+                <h3>Loja:</h2>
+                <p>{{loja.nome}}</p>
+                <h3>Detalhe:</h3>
+                <p>{{loja.detalhe}}</p>
+                <div class="button-container">
+                    <br>
+                    <a href='{% url "pagina-detalhe" %}'><button>Mais informção</button></a>
+                    <a href='{% url "deleta-lojas" loja.id %}'><button>Deleta</button></a>
+                    <aid='atualizado'href='{% url "atualiza-lojas" loja.id %}'><button id='atualiza'>Atualizar</button></a>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+</main>
+{% endblock conteudo %}

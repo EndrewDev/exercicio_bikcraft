@@ -1,0 +1,42 @@
+{% extends "base/produtos.html" %} 
+{% load static %} 
+{% block conteudo %}
+<main>
+    <section id="home">
+        <h2><center>Bem-vindo à Produtos Bicicletas Feita a Mão</center></h2>
+        <p><center>Nossas bicicletas são feitas com a maior qualidade e cuidado.</center></p>
+    </section>
+    <h2><center>Produtos</center></h2>
+    <br>
+    <div class="button-cadastra">
+        <a href='{% url "pagina-cadastraprodutos" %}'><button>Cadastra Produtos</button></a>
+        <a href='{% url "cadastra-detalhe" %}'><button>Adiciona mais informação</button></a>
+    </div>
+    <br>
+    <form class='col-12' method='GET' action='{% url "pagina-produtos" %}'>
+        <input type='text' name='search' class='form-control' id='search' placeholder='Pesquisa Produtos'>
+    </form>
+    <br>
+    <section id="products">
+        {% for produto in produtos %}
+
+            <div class='product-card'>
+                <h2>{{produto.modelo}}</h2>
+                <img class='foto' src='{{produto.foto.url}}'/>
+                <h4>{{produto.descricao}}</h4>
+                <h3> R$ {{produto.preco}}</h3>
+                <div class="button-container">
+                    <a href='{% url "deleta-produto" produto.id %}'><button>Deleta</button></a>
+                    <a id='atualizado' href='{% url "pagina-atualizado" produto.id %}'><button id='atualiza'>Atualizar</button></a>
+                </div>
+                <br>
+                <div class='lista_lojas'>
+                    {% for loja in produto.lojas_set.all %}
+                        <h3>Lojas disponível: {{loja}}</h3>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+</main>
+{% endblock conteudo %}

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendedores - Lojas Bicicletas Feita a Mão</title>
+    <link rel="stylesheet" href="{% static "base/css/deleta-sucesso.css" %}">
+</head>
+<body>
+    <header>
+        <h1>Vendedores - Bicicletas Feita a Mão</h1>
+        <nav>
+            <ul>
+                <li><a href='{% url "pagina-inicial" %}'>Voltar</a></li>
+                <li><a href='{% url "pagina-pessoas" %}'></a>Vendedores</li>
+            </ul>
+        </nav>
+    </header>
+    {% block conteudo %}{% endblock conteudo %}
+    <footer>
+        <p>&copy; Bikcraft. Alguns direitos reservados</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojas Bicicletas Feita a Mão</title>
+    <link rel="stylesheet" href="{% static 'bikes/css/produtos.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Produtos - Bicicletas Feita a Mão</h1>
+        <nav>
+            <ul>
+                <li><a href='{% url "pagina-inicial" %}'>Início</a></li>
+                <li><a href="{% url "pagina-sobre" %}">Sobre</a></li>
+                <li><a href='{% url "pagina-loja" %}'>Lojas</a></li>
+                <li><a href='{% url "pagina-vendedores" %}'>Vendedores</a></li>
+                <li><a href="{% url "pagina-contados" %}">Contato</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href='{% url "sair" %}'>Sair</a></li>
+                {% else %}
+                    <li><a href='{% url "cadastra-usuario" %}'>Cadastro</a></li>
+                    <li><a href='{% url "acessar" %}'>Entrar</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    {% block conteudo %}{% endblock conteudo %}
+
+    <footer>
+        <p>&copy; Bikcraft. Alguns direitos reservados</p>
+    </footer>
+</body>
+</html>

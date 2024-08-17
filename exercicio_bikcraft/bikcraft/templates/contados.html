@@ -1,0 +1,16 @@
+{% extends "base/contados.html" %} 
+{% load static %} 
+{% block conteudo %}
+<main>
+    <section class="contact-form">
+        <h2>Entre em Contato Conosco</h2>
+        <form method='POST' enctype='multipart/form-data' action="{% url "pagina-contados" %}" method="POST">
+            {% csrf_token %}
+
+            {{contados.as_p}}
+
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+</main>
+{% endblock conteudo %}

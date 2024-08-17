@@ -1,0 +1,13 @@
+{% extends "base/enviado.html" %}
+{% load static %}
+{% block conteudo %}  
+
+    <div id='enviado'>
+        <h2>Enviado com sucesso!</h2>
+        <p>Aguarda do seu e-mail</p>
+    </div>
+    <div class='botao'>
+        <a href='{% url "pagina-inicial" %}'><button>Volta para Início</button></a>
+    </div>
+
+{% endblock conteudo %}

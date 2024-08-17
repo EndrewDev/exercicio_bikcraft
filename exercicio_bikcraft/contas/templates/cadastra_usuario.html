@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Lojas Bicicletas Feita a Mão</title>
+    <link rel="stylesheet" href="{% static "base/css/cadastra.css" %}">
+</head>
+<body>
+    <header>
+        <h1>Cadastro - Bicicletas Feita a Mão</h1>
+        <nav>
+            <ul>
+                <li><a href='{% url "pagina-inicial" %}'>Início</a></li>
+                <li><a href="{% url "pagina-sobre" %}">Sobre</a></li>
+                <li><a href='{% url "pagina-produtos" %}'>Produtos</a></li>
+                <li><a href='{% url "pagina-loja" %}'>Lojas</a></li>
+                <li><a href='{% url "pagina-vendedores" %}'>Vendedores</a></li>
+                <li><a href="{% url "pagina-contados" %}">Contato</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href='{% url "sair" %}'>Sair</a></li>
+                {% else %}
+                    <li><a href='{% url "acessar" %}'>Entrar</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="contact-form">
+            <h2>Cadastra-se</h2>
+            <form method='POST' action='{% url "cadastra-usuario" %}'>
+                {% csrf_token %}
+
+                {% comment %} error {% endcomment %}
+                {% if form.non_field_errors %}
+                    <div class='field'>
+                        {% for error in form.non_field_errors %}
+                            <p>{{error}}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% comment %} username {% endcomment %}
+                <div class='field'>
+                    <label>Usuário</label>
+                    {{form.username}}
+                    {% if form.username.erros %}
+                        {% for error in form.username.errors %}
+                            <p>{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                {% comment %} create password {% endcomment %}
+                <div class='field'>
+                    <label>Criar senha</label>
+                    {{form.password1}}
+                    {% if form.password1.errors %}
+                        {% for error in form.password1.errors %}
+                            <p>{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                {% comment %} confirm password {% endcomment %}
+                <div class='field'>
+                    <label>Confirma senha</label>
+                    {{form.password2}}
+                    {% if form.password2.errors %}
+                        {% for error in form.password2.errors %}
+                            <p>{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div>
+                    <center><p>Ser tem login, entra para <a href="{% url 'acessar' %}">login</a></p></div></center>
+                </div>
+                <button> Cadastrar </button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Bikcraft. Alguns direitos reservados</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes - Bicicletas Feita a Mão</title>
+    <link rel="stylesheet" href="{% static "base/css/deleta-sucesso.css" %}">
+</head>
+<body>
+    <header>
+        <h1>Detalhes - Bicicletas Feita a Mão</h1>
+    </header>
+    <div id='deletasucesso'>
+        <h2>Deletado com sucesso!</h2>
+    </div>
+    <div class='botao'>
+        <a href='{% url "pagina-detalhebikes" %}'><button>Volta para Detalhes</button></a>
+        <a href='{% url "pagina-inicial" %}'><button>Sair do Detalhes</button></a>
+    </div>
+    <footer>
+        <p>&copy; Bikcraft. Alguns direitos reservados</p>
+    </footer>
+</body>
+</html>

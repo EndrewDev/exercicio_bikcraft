@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contados Bicicletas Feita a Mão</title>
+    <link rel="stylesheet" href="{% static "base/css/erro_contados.css" %}">
+</head>
+<body>
+    <div id='erro'>
+        <h2>Falta alguns informçao ou tente outro.</h2>
+    </div>
+
+    <div class='botao'>
+        <a href='{% url "pagina-contados" %}'><button>Volta para contados</button></a>
+        <a href='{% url "pagina-inicial" %}'><button>Sair</button></a>
+    </div>
+    
+    <footer>
+        <p>&copy; Bikcraft. Alguns direitos reservados</p>
+    </footer>
+</body>
+</html>

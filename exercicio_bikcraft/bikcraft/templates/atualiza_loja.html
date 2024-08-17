@@ -1,0 +1,20 @@
+{% extends "base/cadastra_lojas.html" %} 
+{% load static %} 
+{% block conteudo %}
+    <section id="home">
+        <h2>Bem-vindo à Cadastra Lojas Bicicletas Feita a Mão</h2>
+    </section>
+
+    <section class="contact-form">
+        <h2>Cadastrada Lojas</h2>
+        <form method='POST' enctype='multipart/form-data' action='{% url "cadastra-loja" %}'>
+            {% csrf_token %}
+
+            {{lojas_form.as_p}}
+        
+        <div class='button-container'>
+            <button type='submit'>Atualizar</button>
+        </div>
+        </form>
+    </section>
+{% endblock conteudo %}

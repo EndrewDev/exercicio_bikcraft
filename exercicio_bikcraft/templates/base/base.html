@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "base/css/style.css" %}">
+    <title>Bikcraft</title>
+</head>
+<body>
+    <img src="{% static "bikes/img/bikcraft.svg" %}" alt="Bikcraft">
+
+    <div class="menu">
+        <a href="{% url "pagina-sobre" %}">Sobre</a>
+        <a href='{% url "pagina-produtos" %}'>Produtos</a>
+        <a href='{% url "pagina-loja" %}'>Lojas</a>
+        <a href='{% url "pagina-vendedores" %}'>Vendedores</a>
+        <a href="{% url "pagina-contados" %}">Contato</a>
+        {% if request.user.is_authenticated %}
+            <a href='{% url "sair" %}'>Sair</a>
+        {% else %}
+            <a href='{% url "cadastra-usuario" %}'>Cadastro</a>
+            <a href='{% url "acessar" %}'>Entrar</a>
+        {% endif %}
+    </div>
+
+    {% if request.user.is_authenticated %}
+        <h1>Seja muito bem-vindo {{request.user.username}}!</h1>
+    {% endif %}
+
+    {% block conteudo %}{% endblock conteudo %}
+
+    
+
+    <div class="rodape">
+        <p>Bikcraft. Alguns direitos reservados</p>
+    </div>
+</body>
+</html>

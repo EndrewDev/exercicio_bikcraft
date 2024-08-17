@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entra - Lojas Bicicletas Feita a Mão</title>
+    <link rel="stylesheet" href="{% static "base/css/acessar.css" %}">
+</head>
+<body>
+    <header>
+        <h1>Entra - Bicicletas Feita a Mão</h1>
+        <nav>
+            <ul>
+                <li><a href='{% url "pagina-inicial" %}'>Início</a></li>
+                <li><a href="{% url "pagina-sobre" %}">Sobre</a></li>
+                <li><a href='{% url "pagina-produtos" %}'>Produtos</a></li>
+                <li><a href='{% url "pagina-loja" %}'>Lojas</a></li>
+                <li><a href='{% url "pagina-vendedores" %}'>Vendedores</a><ali>
+                <li><a href="{% url "pagina-contados" %}">Contato</a></li>
+                <li><a href='{% url "cadastra-usuario" %}'>Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="contact-form">
+            <h2>Entra</h2>
+            <form method='POST' action="{% url "acessar" %}">
+                {% csrf_token %}
+
+                {% comment %} erro {% endcomment %}
+                {% if form.non_field_errors %}
+                    <div class='error'>
+                        {% for error in form.non_field_errors %}
+                            <p>{{error}}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% comment %} username {% endcomment %}
+                <div class='field'>
+                    <label>Usuário</label>
+                    {{form.username}}
+                    {% if form.username.errors %}
+                        {% for erro in form.username.errors %}
+                            <p>{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                {% comment %} password {% endcomment %}
+                <div class='field'>
+                    <label>Senha</label>
+                    {{form.password}}
+                    {% if form.password.errors %}
+                        {% for error in form.password.errors %}
+                            <p>{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div>
+                    <center><p>Ser tem não acessa. Entra para <a href="{% url 'cadastra-usuario' %}">cadastra</a></p></center>
+                </div>
+                <br>
+                
+                <button>Entra</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Bikcraft. Alguns direitos reservados</p>
+    </footer>
+</body>
+</html>
