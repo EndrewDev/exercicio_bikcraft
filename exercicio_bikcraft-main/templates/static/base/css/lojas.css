@@ -112,7 +112,7 @@ section#products {
 
 .button-container button {
     display: inline-block;
-    margin-right: 10px
+    margin-right: 10px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -127,9 +127,14 @@ section#products {
     background: #575757;
 }
 
-p {
-    text-align: center;
+#id_produtos {
+    padding-bottom: 5rem;
+    padding-right: 21rem;
 }
+
+/* p {
+    text-align: center;
+} */
 
 footer {
     background: #333;

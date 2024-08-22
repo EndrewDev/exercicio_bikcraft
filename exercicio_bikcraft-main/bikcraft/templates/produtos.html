@@ -10,7 +10,6 @@
     <br>
     <div class="button-cadastra">
         <a href='{% url "pagina-cadastraprodutos" %}'><button>Cadastra Produtos</button></a>
-        {% comment %} <a href='{% url "cadastra-detalhe" %}'><button>Adiciona mais informação</button></a> {% endcomment %}
     </div>
     <br>
     <form class='col-12' method='GET' action='{% url "pagina-produtos" %}'>
@@ -28,6 +27,7 @@
                 <div class="button-container">
                     <a href='{% url "deleta-produto" produto.id %}'><button>Deleta</button></a>
                     <a id='atualizado' href='{% url "pagina-atualizado" produto.id %}'><button id='atualiza'>Atualizar</button></a>
+                    <a href="#"><button>Mais informação</button></a>
                 </div>
                 <br>
                 <div class='lista_lojas'>
