@@ -1,4 +1,4 @@
-#!/home/endrew/Github/exercicio_bikcraft/exercicio_bikcraft-main/venv/bin/python3
+#!/home/endrew/Documentos/Projeto/exercicio_bikcraft/exercicio_bikcraft-main/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
