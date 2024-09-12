@@ -28,8 +28,8 @@
                 <div class="button-container">
                     <a href='{% url "deleta-produtos" produto.id %}'><button>Deleta</button></a>
                     <a id='atualizado' href='{% url "pagina-atualizado" produto.id %}'><button id='atualiza'>Atualizar</button></a>
-                    {% for detalhe in produto.detalhe_set.all %}
-                        <a href='{% url "pagina-detalhe" detalhe.id %}'><button>Mais informação</button></a>
+	    {% for detalhe in produto.detalhe_set.all %}
+	    <a href='#'><button>Mais informação</button></a>
                     {% endfor %}
                 </div>
                 <br>

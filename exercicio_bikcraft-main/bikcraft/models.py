@@ -42,3 +42,14 @@ class DetalheBikes(models.Model):
 
     def __str__(self):
         return self.bike
+
+class BikeInventory(models.Model):
+    numero_bikes = models.IntegerField()
+    valor_total_bikes = models.FloatField()
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-data_criacao']
+
+    def __srt__(self):
+        return f"N° {self.numero_bike} | Valor R${self.valor_total_bikes}"
