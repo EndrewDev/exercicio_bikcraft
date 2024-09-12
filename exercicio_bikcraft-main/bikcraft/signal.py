@@ -1,11 +1,12 @@
 from django.db.models.signals import pre_save, post_save, pre_delete, post_delete
 from django.db.models import Sum
 from django.dispatch import receiver
-from .models import Pessoas, Bike, Lojas
+from .models import Pessoas, Bike, Lojas, BikeInventory
 
 def atualiza_inventario_bike():
-    numero_de_bike = Bike.objects.all().count()
-    valor_total = Bike.objects.aggregate(valor_total=Sum('preco'))['valor_total']
+    numero_bikes = Bike.objects.all().count()
+    valor_total_bikes = Bike.objects.aggregate(valor_total=Sum('preco'))['valor_total']
+    BikeInventory.objects.create( numero_bikes=numero_bikes, valor_total_bikes=valor_total_bikes)
 
 @receiver(pre_save, sender=Pessoas)
 def vendedor_pre_save(sender, instance, **kwargs):
