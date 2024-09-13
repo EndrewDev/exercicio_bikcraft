@@ -25,12 +25,6 @@ urlpatterns = [
     path('vendedores/', views.vendedores, name='pagina-vendedores'),
     path('atualiza_pessoas/<int:id>/', views.atualiza_pessoas, name='pessoas-atualiza'),
     path('deleta_pessoas/<int:id>/', views.deleta_pessoas, name='deleta-pessoas'),
-
-    #detalhes
-    # path('cadastra_detalhe/', views.detalhes_bikes, name='cadastra-detalhe'),
-    # path('detalhes/', views.detalhe, name='pagina-detalhe'),
-    # path('atualiza_detalhe/<int:id>/', views.atualiza_detalhe, name='detalhe-atualiza'),
-    # path('deleta_detalhe/<int:id>/', views.deleta_detalhe, name='detalhe-detela'),
     
     # contados
     path('enviado/', views.enviado, name='pagina-enviado'),

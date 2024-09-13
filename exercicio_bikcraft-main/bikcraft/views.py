@@ -31,6 +31,11 @@ def cadastra_produtos(request):
     else:
         return redirect('pagina-cadastraprodutos')
         
+# Listas dos produtos:
+class ListasProdutoView(ListView):
+    def get(self, request):
+        bikes = bike.objects.all()
+        return render(request, 'produto.html', {'bikes': bikes})
 
 # recebe as informação para html:
 def produtos(request):
@@ -165,47 +170,3 @@ def deleta_pessoas(request, id):
     pessoas = get_object_or_404(Pessoas, id=id)
     pessoas.delete()
     return redirect('pagina-vendedores')
-
-# cadastra detalhe:
-# @login_required
-# def detalhes_bikes(request):
-#     if request.method == 'POST':
-#         detalhe_bike = DetalheModeForm(request.POST, request.FILES)
-#         if detalhe_bike.is_valid():
-#             detalhe_bike.save()
-#             return redirect('pagina-produtos')
-#     else:
-#         detalhe_bike = DetalheModeForm()
-#     return render(request, 'detalhe_bike.html', {'detalhe': detalhe_bike})
-
-# recebe as informação para html:
-# def detalhe(request):
-#     detalhe = DetalheBikes.objects.all()
-#     return render(request, 'pagina-detalhemais.html', {'detalhes': detalhe})
-
-# atualiza detalhe:
-# def atualiza_detalhe(request, id):
-#     detalhe_atualiza = get_object_or_404(DetalheBikes, id=id)
-#     if request.method == 'POST':
-#         bike = request.POST.get('bike')
-#         marca = request.POST.get('marca')
-#         cor = request.POST.get('cor')
-#         detalhe = request.POST.get('detalhe')
-
-#         if len(bike) > 0:
-#             detalhe_atualiza.bike = bike
-#         if len(marca) > 0:
-#             detalhe_atualiza.marca = marca
-#         if len(cor) > 0:
-#             detalhe_atualiza.cor = cor
-#         if len(detalhe) > 0:
-#             detalhe_atualiza.detalhe = detalhe
-#         detalhe_atualiza.save()
-#         return redirect('atualizado-sucesso-detalhe')
-#     return render(request, 'detalhe_bike.html')
-
-# deleta detalhe:
-# def deleta_detalhe(request, id):
-#     detalhe_deleta = get_object_or_404(DetalheBikes, id=id)
-#     detalhe_deleta.delete()
-#     return redirect('deleta-sucesso-detalhes')

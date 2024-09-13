@@ -33,19 +33,10 @@ class Pessoas(models.Model):
 
     def __str__(self):
         return self.nome
-    
-class DetalheBikes(models.Model):
-    bike = models.OneToOneField(Bike, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Bike')
-    marca = models.CharField(max_length=50, verbose_name='Marca')
-    cor = models.CharField(max_length=50, verbose_name='Cor')
-    detalhe = models.CharField(max_length=255, verbose_name='Detalhe')
-
-    def __str__(self):
-        return self.bike
 
 class BikeInventory(models.Model):
-    numero_bikes = models.IntegerField()
-    valor_total_bikes = models.FloatField()
+    numero_bikes = models.IntegerField(null=True, blank=True)
+    valor_total_bikes = models.FloatField(null=True, blank=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
 
     class Meta:
