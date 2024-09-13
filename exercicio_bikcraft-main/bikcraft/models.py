@@ -3,7 +3,7 @@ from django.db import models
 class Bike(models.Model):
     modelo = models.CharField(max_length=255, verbose_name='Modelo')
     preco = models.FloatField(verbose_name='Preço')
-    descricao = models.TextField(verbose_name='Descrição')
+    descricao = models.TextField(verbose_name='Descrição', blank=True, null=True)
     foto = models.ImageField(upload_to='media/bikcraft/', blank=True, null=True, verbose_name='Foto')
 
     def __str__(self):
@@ -35,7 +35,7 @@ class Pessoas(models.Model):
         return self.nome
     
 class DetalheBikes(models.Model):
-    bike = models.OneToOneField(Bike, on_delete=models.CASCADE, null=True, blank= True, verbose_name='Bike')
+    bike = models.OneToOneField(Bike, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Bike')
     marca = models.CharField(max_length=50, verbose_name='Marca')
     cor = models.CharField(max_length=50, verbose_name='Cor')
     detalhe = models.CharField(max_length=255, verbose_name='Detalhe')

@@ -2,14 +2,16 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import BikeModelForm, ContadosModelForm, LojasModelForm, PessoasModelForm #DetalheModeForm
 from .models import Bike, Contados, Lojas, Pessoas #DetalheBikes
 from django.contrib.auth.decorators import login_required
+from django.views import View
+from django.views.generic import ListView, DeleteView, DetailView, CreateView, TemplateView, UpdateView
 
-# home:
-def home(request):
-    return render(request, 'bike.html')
+# home class:
+class HomeView(TemplateView):
+    template_name = 'bike.html'
 
 # sobre:
-def sobre(request):
-    return render(request, 'sobre.html')
+class SobreView(TemplateView):
+    template_name = 'sobre.html'
 
 # cadastra produtos:
 @login_required

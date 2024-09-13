@@ -56,5 +56,5 @@ def loja_pre_delete(sender, instance, **kwargs):
     print('### SUA LOJA JÁ ESTÁ DELETADO NO DB ###')
 
 @receiver(post_delete, sender=Lojas)
-def loja_post_delete(sender, isntance, **kwargs):
+def loja_post_delete(sender, instance, **kwargs):
     print('### SUA LOJA JÁ ESTÁ DELETADO NO DB ###')

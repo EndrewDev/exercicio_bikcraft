@@ -3,10 +3,10 @@ from . import views
 
 urlpatterns = [
     # home
-    path('', views.home, name='pagina-inicial'),
+    path('', views.HomeView.as_view(), name='pagina-inicial'),
 
     # sobre
-    path('sobre/', views.sobre, name='pagina-sobre'),
+    path('sobre/', views.SobreView.as_view(), name='pagina-sobre'),
 
     # produtos
     path('cadastra_produtos/', views.cadastra_produtos, name='pagina-cadastraprodutos'),
