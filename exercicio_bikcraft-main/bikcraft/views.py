@@ -34,14 +34,13 @@ class CadastraProdutoView(View):
         else:
             return redirect('pagina-cadastraprodutos')
     
-# recebe as informação para html:
-class ListProdutosView(View):
-    def produtos(self, request):
-        bike = Bike.objects.all()
-        search = request.GET.get('search')
-        if search:
-            bike = bike.filter(modelo__icontains=search)
-        return render(request, 'produtos.html', {'produtos': bike})
+# recebe as informação para html: 
+def produtos(request):
+    bike = Bike.objects.all()
+    search = request.GET.get('search')
+    if search:
+        bike = bike.filter(modelo__icontains=search)
+    return render(request, 'produtos.html', {'produtos': bike})
 
 # atualiza produto:
 class UpdateProdutoView(View):
@@ -97,13 +96,12 @@ class CadastraLojaView(View):
         return render(request, 'cadastra_lojas.html', {'lojas_form': lojas_form})
 
 # recebe as informação para html:
-class ListLojasView(View):
-    def lojas(self, request):
-        lojas = Lojas.objects.all()
-        search = request.GET.get('search')
-        if search:
-            lojas = lojas.filter(modelo__icontains=search)
-        return render(request, 'lojas.html', {'lojas': lojas})
+def lojas(request):
+    lojas = Lojas.objects.all()
+    search = request.GET.get('search')
+    if search:
+        lojas = lojas.filter(modelo__icontains=search)
+    return render(request, 'lojas.html', {'lojas': lojas})
 
 # atualiza loja:
 class UpdateLojaView(View):
@@ -149,10 +147,9 @@ class CadastraVendedorView(View):
         return render(request, 'pessoas.html', {'pessoas': pessoas})
     
 # recebe as informação para html:
-class ListVendedorView(View):
-    def vendedores(self, request):
-        informacao_pessoas = Pessoas.objects.all()
-        return render(request, 'vendedores.html', {'vendedores': informacao_pessoas})
+def vendedores(request):
+    informacao_pessoas = Pessoas.objects.all()
+    return render(request, 'vendedores.html', {'vendedores': informacao_pessoas})
 
 #atualiza vendedor:
 class UpdateVendedorView(View):

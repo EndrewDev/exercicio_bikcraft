@@ -10,19 +10,19 @@ urlpatterns = [
 
     # produtos
     path('cadastra_produtos/', views.CadastraProdutoView.as_view(), name='pagina-cadastraprodutos'),
-    path('produtos/', views.ListProdutosView.as_view(), name='pagina-produtos'),
+    path('produtos/', views.produtos, name='pagina-produtos'),
     path('produtos/atualizar/<int:pk>/', views.UpdateProdutoView.as_view(), name='pagina-atualizado'),
     path('produto/deleta/<int:id>/', views.DeleteProdutoView.as_view(), name='deleta-produto'),
 
     # lojas
     path('cadastra_lojas/', views.CadastraLojaView.as_view(), name='cadastra-loja'),
-    path('lojas/', views.ListLojasView.as_view(), name='pagina-loja'),
+    path('lojas/', views.lojas, name='pagina-loja'),
     path('atualiza_lojas/<int:id>/', views.UpdateLojaView.as_view(), name='atualiza-lojas'),
     path('deleta_lojas/<int:id>/', views.DeleteLojaView.as_view(), name='deleta-lojas'),
 
     # vendedores
     path('cadastra_pessoas/', views.CadastraVendedorView.as_view(), name='cadastra-pessoas'),
-    path('vendedores/', views.ListVendedorView.as_view(), name='pagina-vendedores'),
+    path('vendedores/', views.vendedores, name='pagina-vendedores'),
     path('atualiza_pessoas/<int:id>/', views.UpdateVendedorView.as_view(), name='pessoas-atualiza'),
     path('deleta_pessoas/<int:id>/', views.DeleteVendedorView.as_view(), name='deleta-pessoas'),
     
