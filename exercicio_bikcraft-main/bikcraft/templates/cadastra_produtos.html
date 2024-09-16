@@ -7,7 +7,7 @@
 
     <section class="contact-form">
         <h2>Cadastrada Produtos</h2>
-        <form method='POST' enctype='multipart/form-data' action='{% url "pagina-cadastraprodutos" %}'>
+        <form method='POST' enctype='multipart/form-data' action='{% url "cadastrar-produtos" %}'>
             {% csrf_token %}
 
             {{form.as_p}}

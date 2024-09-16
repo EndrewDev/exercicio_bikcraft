@@ -9,8 +9,8 @@ urlpatterns = [
     path('sobre/', views.SobreView.as_view(), name='pagina-sobre'),
 
     # produtos
-    path('cadastra_produtos/', views.CadastraProdutoView.as_view(), name='pagina-cadastraprodutos'),
-    path('produtos/', views.produtos, name='pagina-produtos'),
+    path('produtos/', views.ListProdutosView.as_view(), name='pagina-produtos'),
+    path('produtos/cadastrar/', views.CadastraProdutoView.as_view(), name='cadastrar-produtos'),
     path('produtos/atualizar/<int:pk>/', views.UpdateProdutoView.as_view(), name='pagina-atualizado'),
     path('produto/deleta/<int:id>/', views.DeleteProdutoView.as_view(), name='deleta-produto'),
 

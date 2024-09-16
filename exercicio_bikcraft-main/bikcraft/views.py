@@ -1,60 +1,84 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import BikeModelForm, ContadosModelForm, LojasModelForm, PessoasModelForm #DetalheModeForm
-from .models import Bike, Contados, Lojas, Pessoas #DetalheBikes
+from .models import Bike, Contados, Lojas, Pessoas
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views import View
-#from django.views.generic import ListView, DeleteView, DetailView, CreateView, TemplateView, UpdateView
+from django.views.generic import ListView, DeleteView, DetailView, CreateView, TemplateView, UpdateView
 
 # home class:
 class HomeView(View):
     def get(self, request):
         return render(request, 'bike.html')
 
-# sobre:
+# sobre class:
 class SobreView(View):
     def get(self, request):
         return render(request, 'sobre.html')
 
 # cadastra produtos:
-class CadastraProdutoView(View): 
-    @login_required
-    def cadastra_produtos(self, request):
+# classes:
+@method_decorator(login_required, name='dispatch')
+class CadastraProdutoView(CreateView):
+    model = Bike
+    template_name = 'cadastra_produtos.html'
+    form_class = BikeModelForm
+    sucesso_url = '/produtos/'
 
-        user = request.user
-        if user.is_authenticated:
+#função
+# @login_required
+# def cadastra_produtos(self, request):
 
-            if request.method == 'POST':
-                bike_form = BikeModelForm(request.POST, request.FILES)
-                if bike_form.is_valid():
-                    bike_form.save()
-                    return redirect('pagina-produtos')
-            else:
-                bike_form = BikeModelForm()
-                return render(request, 'cadastra_produtos.html', {'form': bike_form})
-        else:
-            return redirect('pagina-cadastraprodutos')
+#     user = request.user
+#     if user.is_authenticated:
+
+#         if request.method == 'POST':
+#             bike_form = BikeModelForm(request.POST, request.FILES)
+#             if bike_form.is_valid():
+#                 bike_form.save()
+#                 return redirect('pagina-produtos')
+#         else:
+#             bike_form = BikeModelForm()
+#             return render(request, 'cadastra_produtos.html', {'form': bike_form})
+#     else:
+#         return redirect('pagina-cadastraprodutos')
     
-# recebe as informação para html: 
-def produtos(request):
-    bike = Bike.objects.all()
-    search = request.GET.get('search')
-    if search:
-        bike = bike.filter(modelo__icontains=search)
-    return render(request, 'produtos.html', {'produtos': bike})
+# recebe as informação para html:
+# Classes:
+class ListProdutosView(ListView):
+    model = Bike
+    template_name = 'produtos.html'
+    context_object_name = 'produtos'
+
+#Função:
+# def listprodutos(request):
+#     bike = Bike.objects.all()
+#     search = request.GET.get('search')
+#     if search:
+#         bike = bike.filter(modelo__icontains=search)
+#     return render(request, 'produtos.html', {'produtos': bike})
 
 # atualiza produto:
-class UpdateProdutoView(View):
-    def atualizado_produtos(self, request, pk):
-        bike = get_object_or_404(Bike, pk=pk)
-        print(request.POST)
-        if request.method == 'POST':
-            form = BikeModelForm(request.POST, instance=bike)
-            if form.is_valid():
-                form.save()
-                return redirect('pagina-produtos')
-        else:
-            form = BikeModelForm(instance=bike)
-        return render(request, 'cadastra_produtos_atualizar.html', {'form': form, 'bike': bike})
+# classes:
+class UpdateProdutoView(UpdateView):
+    model = Bike
+    template_name = 'cadastra_produtos_atualizar.html'
+    form_class = BikeModelForm
+    sucesso_url = '/produtos/'
+    
+#Função:
+# @login_required
+# def atualizado_produtos(self, request, pk):
+    # bike = get_object_or_404(Bike, pk=pk)
+    # print(request.POST)
+    # if request.method == 'POST':
+        # form = BikeModelForm(request.POST, instance=bike)
+        # if form.is_valid():
+            # form.save()
+            # return redirect('pagina-produtos')
+    # else:
+        # form = BikeModelForm(instance=bike)
+    # return render(request, 'cadastra_produtos_atualizar.html', {'form': form, 'bike': bike})
 
 # deleta produto:
 class DeleteProdutoView(View):
