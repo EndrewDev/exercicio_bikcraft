@@ -80,7 +80,7 @@ main {
 
 #id_produtos {
     padding-bottom: 5rem;
-    padding-right: 23.8rem;
+    padding-right: 17.7rem;
 }
 
 .button-container {
@@ -99,11 +99,6 @@ main {
 
 .button-container button:hover {
     background: #575757;
-}
-
-#id_produtos {
-    padding-bottom: 5rem;
-    padding-right: 27rem;
 }
 
 footer {

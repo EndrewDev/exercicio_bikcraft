@@ -7,12 +7,12 @@ from django.views import View
 from django.views.generic import ListView, DeleteView, DetailView, CreateView, TemplateView, UpdateView
 
 # home class:
-class HomeView(View):
+class HomeView(TemplateView):
     def get(self, request):
         return render(request, 'bike.html')
 
 # sobre class:
-class SobreView(View):
+class SobreView(TemplateView):
     def get(self, request):
         return render(request, 'sobre.html')
 
@@ -81,12 +81,18 @@ class UpdateProdutoView(UpdateView):
     # return render(request, 'cadastra_produtos_atualizar.html', {'form': form, 'bike': bike})
 
 # deleta produto:
-class DeleteProdutoView(View):
-    def deleta_produto(self, request, id):
-        deleta_produtos = get_object_or_404(Bike, pk=id)
-        print(deleta_produtos)
-        deleta_produtos.delete()
-        return redirect('pagina-produtos')
+class DeleteProdutoView(DeleteView):
+    model = Bike
+    template_name = 'produtos.html'
+    sucesso_url = '/produtos/'
+
+
+# Função:
+# def deleta_produto(request, id):
+#     deleta_produtos = get_object_or_404(Bike, pk=id)
+#     print(deleta_produtos)
+#     deleta_produtos.delete()
+#     return redirect('pagina-produtos')
 
 # contado:
 class ContadosView(View):
