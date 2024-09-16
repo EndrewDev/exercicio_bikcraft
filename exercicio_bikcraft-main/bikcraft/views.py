@@ -84,7 +84,7 @@ class UpdateProdutoView(UpdateView):
 class DeleteProdutoView(DeleteView):
     model = Bike
     template_name = 'produtos.html'
-    sucesso_url = '/produtos/'
+    sucesso_url = ''
 
 
 # Função:
