@@ -23,7 +23,7 @@ class CadastraProdutoView(CreateView):
     model = Bike
     template_name = 'cadastra_produtos.html'
     form_class = BikeModelForm
-    sucesso_url = '/produtos/'
+    sucess_url = 'pagina-produtos'
 
 #função
 # @login_required
@@ -64,7 +64,7 @@ class UpdateProdutoView(UpdateView):
     model = Bike
     template_name = 'cadastra_produtos_atualizar.html'
     form_class = BikeModelForm
-    sucesso_url = '/produtos/'
+    sucess_url = '/produtos/'
     
 #Função:
 # @login_required
@@ -84,8 +84,10 @@ class UpdateProdutoView(UpdateView):
 class DeleteProdutoView(DeleteView):
     model = Bike
     template_name = 'produtos.html'
-    sucesso_url = ''
+    sucess_url = '/produtos/'
 
+class DeleteProdutoView(DeleteView):
+    form_class = Bike
 
 # Função:
 # def deleta_produto(request, id):
