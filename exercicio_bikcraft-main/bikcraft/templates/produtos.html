@@ -27,7 +27,7 @@
                 <div class="button-container">
 			<form method='POST' action='{% url "deleta-produto" produto.id %}'>
 				{% csrf_token %}
-				<button type='submit'>Delete</button>
+				<button id='atualiza' type='submit'>Delete</button>
 			</form>
                     <a id='atualizado' href='{% url "pagina-atualizado" produto.id %}'><button id='atualiza'>Atualizar</button></a>
                     <a href="#"><button>Mais informação</button></a>

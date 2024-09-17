@@ -23,7 +23,7 @@ class CadastraProdutoView(CreateView):
     model = Bike
     template_name = 'cadastra_produtos.html'
     form_class = BikeModelForm
-    sucess_url = 'pagina-produtos'
+    success_url = 'pagina-produtos'
 
 #função
 # @login_required
@@ -64,7 +64,7 @@ class UpdateProdutoView(UpdateView):
     model = Bike
     template_name = 'cadastra_produtos_atualizar.html'
     form_class = BikeModelForm
-    sucess_url = '/produtos/'
+    success_url = '/produtos/'
     
 #Função:
 # @login_required
@@ -84,10 +84,7 @@ class UpdateProdutoView(UpdateView):
 class DeleteProdutoView(DeleteView):
     model = Bike
     template_name = 'produtos.html'
-    sucess_url = '/produtos/'
-
-class DeleteProdutoView(DeleteView):
-    form_class = Bike
+    success_url = '/produtos/'
 
 # Função:
 # def deleta_produto(request, id):
@@ -115,25 +112,40 @@ class EnviadoView(View):
         return render(request, 'enviado.html', {'contados': contados})
 
 # cadastra loja:
-class CadastraLojaView(View):
-    @login_required
-    def cadastra_loja(self, request):
-        if request.method == 'POST':
-            lojas_form = LojasModelForm(request.POST, request.FILES)
-            if lojas_form.is_valid():
-                lojas_form.save()
-                return redirect('pagina-loja')
-        else:
-            lojas_form = LojasModelForm()
-        return render(request, 'cadastra_lojas.html', {'lojas_form': lojas_form})
+# classes
+@method_decorator(login_required, name='dispatch')
+class CadastraLojaView(CreateView):
+    model = Lojas
+    template_name = 'cadastra_lojas.html'
+    form_class = LojasModelForm
+    success_url = 'pagina-loja'
+
+# Função
+# @login_required
+# def cadastra_loja(self, request):
+#     if request.method == 'POST':
+#         lojas_form = LojasModelForm(request.POST, request.FILES)
+#         if lojas_form.is_valid():
+#             lojas_form.save()
+#             return redirect('pagina-loja')
+#     else:
+#         lojas_form = LojasModelForm()
+#     return render(request, 'cadastra_lojas.html', {'lojas_form': lojas_form})
 
 # recebe as informação para html:
-def lojas(request):
-    lojas = Lojas.objects.all()
-    search = request.GET.get('search')
-    if search:
-        lojas = lojas.filter(modelo__icontains=search)
-    return render(request, 'lojas.html', {'lojas': lojas})
+# classes
+class ListLojasView(ListView):
+    model = Lojas
+    template_name = 'lojas.html'
+    context_object_name = 'lojas'
+
+# função
+# def lojas(request):
+#     lojas = Lojas.objects.all()
+#     search = request.GET.get('search')
+#     if search:
+#         lojas = lojas.filter(modelo__icontains=search)
+#     return render(request, 'lojas.html', {'lojas': lojas})
 
 # atualiza loja:
 class UpdateLojaView(View):

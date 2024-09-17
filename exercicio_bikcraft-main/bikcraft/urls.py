@@ -16,7 +16,7 @@ urlpatterns = [
 
     # lojas
     path('cadastra_lojas/', views.CadastraLojaView.as_view(), name='cadastra-loja'),
-    path('lojas/', views.lojas, name='pagina-loja'),
+    path('lojas/', views.ListLojasView.as_view(), name='pagina-loja'),
     path('atualiza_lojas/<int:pk>/', views.UpdateLojaView.as_view(), name='atualiza-lojas'),
     path('deleta_lojas/<int:pk>/', views.DeleteLojaView.as_view(), name='deleta-lojas'),
 

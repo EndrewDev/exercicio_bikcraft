@@ -45,7 +45,6 @@ def pessoa_post_delete(sender, instance, **kwargs):
 @receiver(pre_delete, sender=Bike)
 def bike_pre_delete(sender, instance, **kwargs):
     print('### SUA BIKE JÁ ESTÁ DELETADO NO DB ###')
-    atualiza_inventario_bike()
 
 @receiver(post_delete, sender=Bike)
 def bike_post_delete(sender, instance, **kwargs):
