@@ -23,7 +23,7 @@ class CadastraProdutoView(CreateView):
     model = Bike
     template_name = 'cadastra_produtos.html'
     form_class = BikeModelForm
-    success_url = 'pagina-produtos'
+    success_url = '/produtos/'
 
 #função
 # @login_required
@@ -148,27 +148,35 @@ class ListLojasView(ListView):
 #     return render(request, 'lojas.html', {'lojas': lojas})
 
 # atualiza loja:
+# Classes
 class UpdateLojaView(View):
-    def atualizado_lojas(self, request, id):
-        bike = get_object_or_404(Bike, id=id)
+    model = Lojas
+    template_name = 'atualiza_loja.html'
+    form_class = LojasModelForm
+    success_url = '/lojas/'
+    
 
-        if request.method == 'POST':
-            modelo = request.POST.get('modelo')
-            preco = request.POST.get('preco')
-            descricao = request.POST.get('descricao')
-            foto = request.POST.get('foto')
+# Função
+# def atualizado_lojas(self, request, id):
+#     bike = get_object_or_404(Bike, id=id)
 
-            if len(modelo) > 0:
-                bike.modelo = modelo
-            if len(preco) > 0:
-                bike.preco = preco
-            if len(descricao) > 0:
-                bike.descricao = descricao
-            if len(foto) > 0:
-                bike.foto = foto
-            bike.save()
-            return redirect('pagina-loja')
-        return render(request, 'cadastra_lojas.html', {'bike': bike})
+#     if request.method == 'POST':
+#         modelo = request.POST.get('modelo')
+#         preco = request.POST.get('preco')
+#         descricao = request.POST.get('descricao')
+#         foto = request.POST.get('foto')
+
+#     if len(modelo) > 0:
+#         bike.modelo = modelo
+#         if len(preco) > 0:
+#             bike.preco = preco
+#         if len(descricao) > 0:
+#             bike.descricao = descricao
+#         if len(foto) > 0:
+#             bike.foto = foto
+#         bike.save()
+#         return redirect('pagina-loja')
+#     return render(request, 'cadastra_lojas.html', {'bike': bike})
 
 # deleta loja:
 class DeleteLojaView(View):

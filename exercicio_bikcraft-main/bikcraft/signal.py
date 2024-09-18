@@ -19,12 +19,10 @@ def vendedor_post_save(sender, instance, **kwargs):
 @receiver(pre_save, sender=Bike)
 def bike_pre_save(sender, instance, **kwargs):
     print('### SUA BIKE JÁ ESTÁ NO DB ###')
-    atualiza_inventorio_bike()
 
 @receiver(post_save, sender=Bike)
 def bike_post_save(sender, instance, ** kwargs):
     print('### SUA BIKE JÁ ESTÁ NO DB ###')
-    atualiza_inventorio_bike()
 
 @receiver(pre_save, sender=Lojas)
 def lojas_pre_save(sender, instance, **kwargs):
