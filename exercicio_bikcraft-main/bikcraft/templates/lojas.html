@@ -24,12 +24,12 @@
                 <p>{{loja.detalhe}}</p>
                 <div class="button-container">
                     <br>
-		    <a href='#'><button>Mais informção</button></a>
-		    <form method='POST' action='{% url "deleta-lojas" loja.id %}'>
-			    {% csrf_token %}
-			    <button type='submit'>Deleta</button>
-		    </form>
-                    <aid='atualizado'href='{% url "atualiza-lojas" loja.id %}'><button id='atualiza'>Atualizar</button></a>
+		            <form method='POST' action='{% url "deleta-lojas" loja.id %}'>
+			            {% csrf_token %}
+			            <center><button type='submit'>Deleta</button></center>
+		            </form>
+                    <br>
+                    <center><a id='atualizado' href='{% url "atualiza-lojas" loja.id %}'><button id='atualiza'>Atualizar</button></a></center>
                 </div>
             </div>
         {% endfor %}

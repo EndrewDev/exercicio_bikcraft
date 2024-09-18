@@ -118,7 +118,7 @@ class CadastraLojaView(CreateView):
     model = Lojas
     template_name = 'cadastra_lojas.html'
     form_class = LojasModelForm
-    success_url = 'pagina-loja'
+    success_url = '/lojas/'
 
 # Função
 # @login_required
@@ -149,7 +149,7 @@ class ListLojasView(ListView):
 
 # atualiza loja:
 # Classes
-class UpdateLojaView(View):
+class UpdateLojaView(UpdateView):
     model = Lojas
     template_name = 'atualiza_loja.html'
     form_class = LojasModelForm
@@ -179,11 +179,17 @@ class UpdateLojaView(View):
 #     return render(request, 'cadastra_lojas.html', {'bike': bike})
 
 # deleta loja:
-class DeleteLojaView(View):
-    def deleta_lojas(self, request, id):
-        deleta_lojas = get_object_or_404(Lojas, id=id)
-        deleta_lojas.delete()
-        return redirect('pagina-loja')
+# Classes
+class DeleteLojaView(DeleteView):
+    model = Lojas
+    template_name = 'lojas.html'
+    success_url = '/lojas/'
+
+# Função
+# def deleta_lojas(request, id):
+#     deleta_lojas = get_object_or_404(Lojas, id=id)
+#     deleta_lojas.delete()
+#     return redirect('pagina-loja')
 
 #cadstra vendedor:
 class CadastraVendedorView(View):

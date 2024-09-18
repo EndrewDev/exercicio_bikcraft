@@ -10,11 +10,11 @@
         <form method='POST' enctype='multipart/form-data' action='{% url "cadastra-loja" %}'>
             {% csrf_token %}
 
-            {{lojas_form.as_p}}
+            {{form.as_p}}
         
-        <div class='button-container'>
-            <button type='submit'>Adicionar</button>
-        </div>
+            <div class='button-container'>
+                <button type='submit'>Adicionar</button>
+            </div>
         </form>
     </section>
 {% endblock conteudo %}
