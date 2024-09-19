@@ -35,7 +35,7 @@
         <form method='POST' enctype='multipart/form-data' action='{% url "pagina-produtos" %}'>
             {% csrf_token %}
 
-            {{pessoas.as_p}}
+            {{form.as_p}}
 
             <button type='submit'>Atualiza</button>
         </form>

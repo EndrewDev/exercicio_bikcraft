@@ -21,10 +21,10 @@ urlpatterns = [
     path('deleta_lojas/<int:pk>/', views.DeleteLojaView.as_view(), name='deleta-lojas'),
 
     # vendedores
-    path('cadastra_pessoas/', views.CadastraVendedorView.as_view(), name='cadastra-pessoas'),
-    path('vendedores/', views.vendedores, name='pagina-vendedores'),
-    path('atualiza_pessoas/<int:pk>/', views.UpdateVendedorView.as_view(), name='pessoas-atualiza'),
-    path('deleta_pessoas/<int:pk>/', views.DeleteVendedorView.as_view(), name='deleta-pessoas'),
+    path('pessoas/cadastrar/', views.CadastraVendedorView.as_view(), name='cadastra-pessoas'),
+    path('vendedores/', views.ListVendedoresView.as_view(), name='pagina-vendedores'),
+    path('pessoas/atualizar/<int:pk>/', views.UpdateVendedorView.as_view(), name='pessoas-atualiza'),
+    path('pessoas/deletar/<int:pk>/', views.DeleteVendedorView.as_view(), name='deleta-pessoas'),
     
     # contados
     path('enviado/', views.EnviadoView.as_view(), name='pagina-enviado'),

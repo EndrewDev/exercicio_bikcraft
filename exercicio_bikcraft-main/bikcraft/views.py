@@ -45,6 +45,7 @@ class CadastraProdutoView(CreateView):
     
 # recebe as informação para html:
 # Classes:
+@method_decorator(login_required, name='dispatch')
 class ListProdutosView(ListView):
     model = Bike
     template_name = 'produtos.html'
@@ -60,6 +61,7 @@ class ListProdutosView(ListView):
 
 # atualiza produto:
 # classes:
+@method_decorator(login_required, name='dispatch')
 class UpdateProdutoView(UpdateView):
     model = Bike
     template_name = 'cadastra_produtos_atualizar.html'
@@ -81,12 +83,14 @@ class UpdateProdutoView(UpdateView):
     # return render(request, 'cadastra_produtos_atualizar.html', {'form': form, 'bike': bike})
 
 # deleta produto:
+@method_decorator(login_required, name='dispatch')
 class DeleteProdutoView(DeleteView):
     model = Bike
     template_name = 'produtos.html'
     success_url = '/produtos/'
 
 # Função:
+# @login_required
 # def deleta_produto(request, id):
 #     deleta_produtos = get_object_or_404(Bike, pk=id)
 #     print(deleta_produtos)
@@ -94,6 +98,7 @@ class DeleteProdutoView(DeleteView):
 #     return redirect('pagina-produtos')
 
 # contado:
+@method_decorator(login_required, name='dispatch')
 class ContadosView(View):
     def contados(self, request):
         if request.method == "POST":
@@ -149,6 +154,7 @@ class ListLojasView(ListView):
 
 # atualiza loja:
 # Classes
+@method_decorator(login_required, name='dispatch')
 class UpdateLojaView(UpdateView):
     model = Lojas
     template_name = 'atualiza_loja.html'
@@ -157,6 +163,7 @@ class UpdateLojaView(UpdateView):
     
 
 # Função
+# @login_required
 # def atualizado_lojas(self, request, id):
 #     bike = get_object_or_404(Bike, id=id)
 
@@ -180,58 +187,87 @@ class UpdateLojaView(UpdateView):
 
 # deleta loja:
 # Classes
+@method_decorator(login_required, name='dispatch')
 class DeleteLojaView(DeleteView):
     model = Lojas
     template_name = 'lojas.html'
     success_url = '/lojas/'
 
 # Função
+# @login_required
 # def deleta_lojas(request, id):
 #     deleta_lojas = get_object_or_404(Lojas, id=id)
 #     deleta_lojas.delete()
 #     return redirect('pagina-loja')
 
 #cadstra vendedor:
-class CadastraVendedorView(View):
-    @login_required
-    def cadastra_pessoas(self, request):
-        if request.method == 'POST':
-            pessoas = PessoasModelForm(request.POST, request.FILES)
-            if pessoas.is_valid():
-                pessoas.save()
-                return redirect('pagina-vendedores')
-        else:
-            pessoas = PessoasModelForm()
-        return render(request, 'pessoas.html', {'pessoas': pessoas})
+@method_decorator(login_required, name='dispatch')
+class CadastraVendedorView(CreateView):
+    model = Pessoas
+    template_name = 'cadastra_vendedor.html'
+    form_class = PessoasModelForm
+    success_url = '/vendedores/'
+
+
+# @login_required
+# def cadastra_pessoas(self, request):
+#     if request.method == 'POST':
+#         pessoas = PessoasModelForm(request.POST, request.FILES)
+#         if pessoas.is_valid():
+#             pessoas.save()
+#             return redirect('pagina-vendedores')
+#     else:
+#         pessoas = PessoasModelForm()
+#     return render(request, 'pessoas.html', {'pessoas': pessoas})
     
 # recebe as informação para html:
-def vendedores(request):
-    informacao_pessoas = Pessoas.objects.all()
-    return render(request, 'vendedores.html', {'vendedores': informacao_pessoas})
+# Classes
+class ListVendedoresView(ListView):
+    model = Pessoas
+    template_name = 'vendedores.html'
+    content_type = 'vendedores'
+
+# Função
+# def vendedores(request):
+#     informacao_pessoas = Pessoas.objects.all()
+#     return render(request, 'vendedores.html', {'vendedores': informacao_pessoas})
 
 #atualiza vendedor:
-class UpdateVendedorView(View):
-    def atualiza_pessoas(self, request, id):
-        pessoas_atualiza = get_object_or_404(Pessoas, id=id)
+@method_decorator(login_required, name='dispatch')
+class UpdateVendedorView(UpdateView):
+    model = Pessoas
+    template_name = 'atualiza_vendedores.html'
+    form_class = PessoasModelForm
+    success_url = '/vendedores/'
 
-        if request.method == 'POST':
-            nome = request.POST.get('nome')
-            cpf = request.POST.get('cpf')
-            opcao_lojas = request.POST.get('opcao_lojas')
+# @login_required
+# def atualiza_pessoas(self, request, id):
+#     pessoas_atualiza = get_object_or_404(Pessoas, id=id)
 
-            if len(nome) > 0:
-                pessoas_atualiza.nome = nome
-            if len(cpf) > 0:
-                pessoas_atualiza.cpf = cpf
-            if len(opcao_lojas) > 0:
-                pessoas_atualiza.opcao_lojas = opcao_lojas
-            pessoas_atualiza.save()
-            return redirect('pagina-vendedores')
-        return render(request, 'pessoas.html', {'vendeodres': pessoas_atualiza})
+#     if request.method == 'POST':
+#         nome = request.POST.get('nome')
+#         cpf = request.POST.get('cpf')
+#         opcao_lojas = request.POST.get('opcao_lojas')
+
+#         if len(nome) > 0:
+#             pessoas_atualiza.nome = nome
+#         if len(cpf) > 0:
+#             pessoas_atualiza.cpf = cpf
+#         if len(opcao_lojas) > 0:
+#             pessoas_atualiza.opcao_lojas = opcao_lojas
+#         pessoas_atualiza.save()
+#         return redirect('pagina-vendedores')
+#     return render(request, 'pessoas.html', {'vendeodres': pessoas_atualiza})
 
 # deleta vendedor:
-class DeleteVendedorView(View):
-    def deleta_pessoas(self, request, id):
-        pessoas = get_object_or_404(Pessoas, id=id)
-        pessoas.delete()
-        return redirect('pagina-vendedores')
+@method_decorator(login_required, name='dispatch')
+class DeleteVendedorView(DeleteView):
+    model = Pessoas
+    template_name = 'vendedores.html'
+    success_url = '/vendedores/'
+
+# @login_required
+# def deleta_pessoas(self, request, id):
+#     pessoas = get_object_or_404(Pessoas, id=id)
+#     pessoas.delete()
+#     return redirect('pagina-vendedores')

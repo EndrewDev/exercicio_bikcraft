@@ -35,8 +35,7 @@
         <form method='POST' enctype='multipart/form-data' action='{% url "cadastra-pessoas" %}'>
             {% csrf_token %}
 
-            {{pessoas.as_p}}
-
+            {{form.as_p}}
             <button type='submit'>Adicionar</button>
         </form>
     </section>
