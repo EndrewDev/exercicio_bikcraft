@@ -12,9 +12,10 @@
         <a href='{% url "cadastrar-produtos" %}'><button>Cadastra Produtos</button></a>
     </div>
     <br>
-    <form class='col-12' method='GET' action='{% url "pagina-produtos" %}'>
+    <!-- Só funcionar com def e não class -->
+    <!-- <form class='col-12' method='GET' action='{% url "pagina-produtos" %}'>
         <input type='text' name='search' class='form-control' id='search' placeholder='Pesquisa Produtos'>
-    </form>
+    </form> -->
     <br>
     <section id="products">
         {% for produto in produtos %}
@@ -27,9 +28,10 @@
                 <div class="button-container">
 			        <form method='POST' action='{% url "deleta-produto" produto.id %}'>
 				        {% csrf_token %}
-				        <button type='submit'>Delete</button>
+				        <center><button type='submit'>Delete</button></center>
 			        </form>
-                    <a id='atualizado' href='{% url "pagina-atualizado" produto.id %}'><button id='atualiza'>Atualizar</button></a>
+                    <br>
+                    <center><a id='atualizado' href='{% url "pagina-atualizado" produto.id %}'><button id='atualiza'>Atualizar</button></a></center>
                 </div>
                 <br>
                 <div class='lista_lojas'>

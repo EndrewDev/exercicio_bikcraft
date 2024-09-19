@@ -15,10 +15,10 @@ urlpatterns = [
     path('produto/deleta/<int:pk>/', views.DeleteProdutoView.as_view(), name='deleta-produto'),
 
     # lojas
-    path('cadastra_lojas/', views.CadastraLojaView.as_view(), name='cadastra-loja'),
+    path('lojas/cadatrar/', views.CadastraLojaView.as_view(), name='cadastra-loja'),
     path('lojas/', views.ListLojasView.as_view(), name='pagina-loja'),
-    path('atualiza_lojas/<int:pk>/', views.UpdateLojaView.as_view(), name='atualiza-lojas'),
-    path('deleta_lojas/<int:pk>/', views.DeleteLojaView.as_view(), name='deleta-lojas'),
+    path('lojas/atualizar/<int:pk>/', views.UpdateLojaView.as_view(), name='atualiza-lojas'),
+    path('lojas/deletar/<int:pk>/', views.DeleteLojaView.as_view(), name='deleta-lojas'),
 
     # vendedores
     path('pessoas/cadastrar/', views.CadastraVendedorView.as_view(), name='cadastra-pessoas'),

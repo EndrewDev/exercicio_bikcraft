@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendedores Bicicletas Feita a Mão</title>
-    <link rel="stylesheet" href="{% static "base/css/vendedores.css" %}">
+    <link rel="stylesheet" href="{% static 'base/css/vendedores.css' %}">
 </head>
 <body>
     <header>
@@ -13,10 +13,10 @@
         <nav>
             <ul>
                 <li><a href='{% url "pagina-inicial" %}'>Início</a></li>
-                <li><a href="{% url "pagina-sobre" %}">Sobre</a></li>
+                <li><a href="{% url 'pagina-sobre' %}">Sobre</a></li>
                 <li><a href='{% url "pagina-produtos" %}'>Produtos</a><li>
                 <li><a href='{% url "pagina-loja" %}'>Lojas</a></li>
-                <li><a href="{% url "pagina-contados" %}">Contato</a></li>
+                <li><a href="{% url 'pagina-contados' %}">Contato</a></li>
                 <li><a href='{% url "cadastra-usuario" %}'>Cadastro</a></li>
                 {% if request.user.is_authenticated %}
                 <li><a href='{% url "sair" %}'>Sair</a></li>
@@ -39,18 +39,22 @@
         <section id="products">
             {% for vendedor in vendedores %}
                 <div class='product-card'>
+                    <h4>Nome:</h4>
+                    <p>{{vendedor.nome}}</p>
+                    <h4>CPF:</h4>
+                    <p>{{vendedor.cpf}}</p>
+                    <h4>Loja:</h4>
+                    <p>{{vendedor.opcao_lojas}}</p><br>
                     <div class="button-container">
-                        <h4>Nome:</h4>
-                        <p>{{vendedor.nome}}</p>
-                        <h4>CPF:</h4>
-                        <p>{{vendedor.cpf}}</p>
-                        <h4>Loja:</h4>
-                        <p>{{vendedor.opcao_lojas}}</p><br>
-                        <a href='{% url "deleta-pessoas" vendedor.id %}'><button>Deleta</button></a>
-                        <a id='atualizado' href='atualiza-vendedores vendedor.id'><button id='atualiza'>Atualizar</button></a>
+                        <form method='POST' action = '{% url "deleta-pessoas" vendedor.id%}'>
+                            {% csrf_token %}
+                            <button type="submit">Deleta</button>
+                        </form><br>
+                        <!-- <a href='{% url "deleta-pessoas" vendedor.id %}'><button>Deleta</button></a> -->
+                        <a id='atualizado' href="{% url 'atualiza-vendedores vendedor.id' vendedor.id %}"><button>Atualizar</button></a>
                     </div>
                 </div>
-                {% endfor %}
+            {% endfor %}
             </div>
         </section>
     </main>

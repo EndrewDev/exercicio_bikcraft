@@ -11,9 +11,10 @@
         <a href='{% url "cadastra-loja" %}'><button>Cadastra Lojas</button></a>
     </div>
     <br>
-    <form class='col-12' method='GET' action='{% url "pagina-loja" %}'>
+    <!-- Só funcionar com def e não class -->
+    <!-- <form class='col-12' method='GET' action='{% url "pagina-loja" %}'>
         <input type='text' name='search' class='form-control' id='search' placeholder='Pesquisa lojas'>
-    </form>
+    </form> -->
     <br>
     <section id="products">
         {% for loja in lojas %}

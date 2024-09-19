@@ -45,7 +45,6 @@ class CadastraProdutoView(CreateView):
     
 # recebe as informação para html:
 # Classes:
-@method_decorator(login_required, name='dispatch')
 class ListProdutosView(ListView):
     model = Bike
     template_name = 'produtos.html'
@@ -225,7 +224,7 @@ class CadastraVendedorView(CreateView):
 class ListVendedoresView(ListView):
     model = Pessoas
     template_name = 'vendedores.html'
-    content_type = 'vendedores'
+    context_type = 'vendedores'
 
 # Função
 # def vendedores(request):
