@@ -98,22 +98,27 @@ class DeleteProdutoView(DeleteView):
 
 # contado:
 @method_decorator(login_required, name='dispatch')
-class ContadosView(View):
-    def contados(self, request):
-        if request.method == "POST":
-            contados_form = ContadosModelForm(request.POST, request.FILES)
-            if contados_form.is_valid():
-                contados_form.save()
-                return redirect('pagina-enviado')
-        else:
-            contados_form = ContadosModelForm()
-        return render(request, 'contados.html', {'contados': contados_form})
+class ContadosView(CreateView):
+    model = Contados
+    template_name = 'contados.html'
+    form_class = ContadosModelForm
+    success_url = '/enviado/'
+
+# @login_required
+# def contados(self, request):
+#     if request.method == "POST":
+#         contados_form = ContadosModelForm(request.POST, request.FILES)
+#         if contados_form.is_valid():
+#             contados_form.save()
+#             return redirect('pagina-enviado')
+#     else:
+#         contados_form = ContadosModelForm()
+#     return render(request, 'contados.html', {'contados': contados_form})
 
 # enviado com sucesso do contado:
-class EnviadoView(View):
-    def enviado(self, request):
-        contados = Contados.objects.all()
-        return render(request, 'enviado.html', {'contados': contados})
+def enviado(request):
+    contados = Contados.objects.all()
+    return render(request, 'enviado.html', {'contados': contados})
 
 # cadastra loja:
 # classes
@@ -224,7 +229,7 @@ class CadastraVendedorView(CreateView):
 class ListVendedoresView(ListView):
     model = Pessoas
     template_name = 'vendedores.html'
-    context_type = 'vendedores'
+    context_object_name = 'vendedores'
 
 # Função
 # def vendedores(request):

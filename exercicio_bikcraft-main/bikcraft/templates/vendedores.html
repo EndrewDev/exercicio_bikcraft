@@ -50,8 +50,7 @@
                             {% csrf_token %}
                             <button type="submit">Deleta</button>
                         </form><br>
-                        <!-- <a href='{% url "deleta-pessoas" vendedor.id %}'><button>Deleta</button></a> -->
-                        <a id='atualizado' href="{% url 'atualiza-vendedores vendedor.id' vendedor.id %}"><button>Atualizar</button></a>
+                        <a id='atualizado' href="{% url 'pessoas-atualiza' vendedor.id %}"><button>Atualizar</button></a>
                     </div>
                 </div>
             {% endfor %}
