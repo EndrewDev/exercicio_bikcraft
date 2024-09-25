@@ -2,11 +2,12 @@ from django.db.models.signals import pre_save, post_save, pre_delete, post_delet
 from django.db.models import Sum
 from django.dispatch import receiver
 from .models import Pessoas, Bike, Lojas, BikeInventory
+from api_gemini import client
 
 def atualiza_inventorio_bike():
     numero_bikes = Bike.objects.all().count()
     valor_total_bikes = Bike.objects.aggregate(valor_total=Sum('preco'))['valor_total']
-    BikeInventory.objects.create( numero_bikes=numero_bikes, valor_total_bikes=valor_total_bikes)
+    BikeInventory.objects.create(numero_bikes=numero_bikes, valor_total_bikes=valor_total_bikes)
 
 @receiver(pre_save, sender=Pessoas)
 def vendedor_pre_save(sender, instance, **kwargs):
@@ -18,6 +19,9 @@ def vendedor_post_save(sender, instance, **kwargs):
 
 @receiver(pre_save, sender=Bike)
 def bike_pre_save(sender, instance, **kwargs):
+    modelo = instance.modelo
+    if not instance.descricao:
+        instance.descricao = client(modelo)
     print('### SUA BIKE JÁ ESTÁ NO DB ###')
 
 @receiver(post_save, sender=Bike)

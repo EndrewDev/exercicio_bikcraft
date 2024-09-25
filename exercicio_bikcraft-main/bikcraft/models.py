@@ -20,7 +20,7 @@ class Contados(models.Model):
 class Lojas(models.Model):
     nome = models.CharField(max_length=30, verbose_name='Nome da Loja')
     produtos = models.ManyToManyField(Bike, verbose_name='Produtos')
-    cnpj = models.CharField(max_length=25, verbose_name='CNPJ')
+    cnpj = models.CharField(max_length=14, verbose_name='CNPJ')
     detalhe = models.TextField(blank=True, null=True, verbose_name='Descrição')
 
     def __str__(self):
@@ -43,4 +43,4 @@ class BikeInventory(models.Model):
         ordering = ['-data_criacao']
 
     def __srt__(self):
-        return f"N° {self.numero_bike} | Valor R${self.valor_total_bikes}"
+        return f"N° {self.numero_bikes} | Valor R${self.valor_total_bikes}"

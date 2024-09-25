@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import BikeModelForm, ContadosModelForm, LojasModelForm, PessoasModelForm #DetalheModeForm
+from .forms import BikeModelForm, ContadosModelForm, LojasModelForm, PessoasModelForm
 from .models import Bike, Contados, Lojas, Pessoas
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -165,7 +165,6 @@ class UpdateLojaView(UpdateView):
     form_class = LojasModelForm
     success_url = '/lojas/'
     
-
 # Função
 # @login_required
 # def atualizado_lojas(self, request, id):
@@ -205,6 +204,7 @@ class DeleteLojaView(DeleteView):
 #     return redirect('pagina-loja')
 
 #cadstra vendedor:
+# Classes
 @method_decorator(login_required, name='dispatch')
 class CadastraVendedorView(CreateView):
     model = Pessoas
@@ -212,7 +212,7 @@ class CadastraVendedorView(CreateView):
     form_class = PessoasModelForm
     success_url = '/vendedores/'
 
-
+# função
 # @login_required
 # def cadastra_pessoas(self, request):
 #     if request.method == 'POST':
@@ -237,6 +237,7 @@ class ListVendedoresView(ListView):
 #     return render(request, 'vendedores.html', {'vendedores': informacao_pessoas})
 
 #atualiza vendedor:
+# Classes
 @method_decorator(login_required, name='dispatch')
 class UpdateVendedorView(UpdateView):
     model = Pessoas
@@ -244,6 +245,7 @@ class UpdateVendedorView(UpdateView):
     form_class = PessoasModelForm
     success_url = '/vendedores/'
 
+# Função
 # @login_required
 # def atualiza_pessoas(self, request, id):
 #     pessoas_atualiza = get_object_or_404(Pessoas, id=id)
@@ -264,12 +266,14 @@ class UpdateVendedorView(UpdateView):
 #     return render(request, 'pessoas.html', {'vendeodres': pessoas_atualiza})
 
 # deleta vendedor:
+#Classes
 @method_decorator(login_required, name='dispatch')
 class DeleteVendedorView(DeleteView):
     model = Pessoas
     template_name = 'vendedores.html'
     success_url = '/vendedores/'
 
+# função
 # @login_required
 # def deleta_pessoas(self, request, id):
 #     pessoas = get_object_or_404(Pessoas, id=id)
