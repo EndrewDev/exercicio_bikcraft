@@ -21,7 +21,7 @@ def vendedor_post_save(sender, instance, **kwargs):
 def bike_pre_save(sender, instance, **kwargs):
     modelo = instance.modelo
     if not instance.descricao:
-        instance.descricao = client(modelo)
+        instance.descricao = client.client_gemini(modelo)
     print('### SUA BIKE JÁ ESTÁ NO DB ###')
 
 @receiver(post_save, sender=Bike)
